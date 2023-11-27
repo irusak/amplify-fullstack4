@@ -1,15 +1,53 @@
 import logo from './logo.svg';
-import './App.css';
+import '@aws-amplify/ui-react/styles.css';
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  Text,
+  TextField,
+  View,
+  Card,
+} from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-function App() {
+function App({ signOut, user }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Amplify Fullstack App</h1>
-      </header>
-    </div>
+    <View className="App" padding="1rem">
+      <Card variation="elevated">
+        <div style={styles.container}>
+          <Image width="50%" src={logo} className="App-logo" alt="logo" />
+          <Heading level={1}>We now have Auth!</Heading>
+        </div>
+      </Card>
+
+      <div style={styles.container}>
+        <Heading level={1}>Hello {user.username}</Heading>
+        <Button onClick={signOut} style={styles.button}>
+          Sign out
+        </Button>
+      </div>
+    </View>
   );
 }
 
-export default App;
+const styles = {
+  container: {
+    width: 600,
+    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+
+  button: {
+    outline: 'none',
+    fontSize: 18,
+    padding: '12px 10px',
+  },
+};
+
+export default withAuthenticator(App);
