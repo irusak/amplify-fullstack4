@@ -17,6 +17,9 @@
       },
       "api": {
         "amplifyfullstack4": {}
+      },
+      "storage": {
+        "imgstorage": {}
       }
     }
   }
